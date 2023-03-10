@@ -121,8 +121,9 @@ export default {
     <div class="din-top__header"></div>
     <div class="dinamic-header" id="1">
       <div 
-        class="din__bg din-radius bg-white abs-center pos-abs bg-text"
+        class="din__bg abs-center din-radius bg-white pos-abs bg-text"
         :class="{
+          'din-top-1': point == 0,
           'din-rotated': point == 1, 
           'din-eye': point == 2, 
           'din-block': point == 3 || point == 5,
@@ -151,7 +152,7 @@ export default {
               <img 
                 @click="scrollTo('Point-2')"
                 :class="{
-                  'din-rotated-img': point == 1 || point == 3,
+                  'din-rotated-img': point == 1 || point == 5,
                 }"
                 class="din-img-1" 
                 src="@/assets/imgs/headers/eye.png"
@@ -161,7 +162,7 @@ export default {
             <img 
               @click="scrollTo('Point-3')"
               :class="{
-                  'din-rotated-img': point == 1 || point == 3,
+                  'din-rotated-img': point == 1 || point == 3 || point == 5,
                 }"
               class="din-img-1 din-img-float" 
               style="filter: invert(0)" 
@@ -169,7 +170,7 @@ export default {
             <img 
               @click="scrollTo('Point-6')"
               :class="{
-                  'din-rotated-img': point == 1 || point == 3,
+                  'din-rotated-img': point == 1 || point == 3 || point == 5,
                 }"
               class="din-img-1 din-img-float" 
               src="@/assets/imgs/headers/contact.png"
@@ -298,6 +299,7 @@ export default {
   font-size: 10vw;
   text-transform: capitalize;
   transform: scaleY(2.5);
+  -webkit-transform: scaleY(2.5);
   letter-spacing: 1vw;
   cursor: default;
   user-select: none;
@@ -305,6 +307,7 @@ export default {
 }
 .din-open-footer__letter:hover {
   transform: scaleY(2.3);
+  -webkit-transform: scaleY(2.3);
 }
 .din-open-footer__letter:nth-child(3) {
   z-index: 3;
@@ -368,6 +371,7 @@ export default {
 }
 .din-anim-hover:hover {
   transform: scale(1.1);
+  -webkit-transform: scale(1.1);
 }
 
 
@@ -378,6 +382,7 @@ export default {
 
 .din-p-4__container {
   transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
   transition: 1s all;
   position: relative;
   top: 0;
@@ -410,12 +415,14 @@ export default {
   margin: 0;
   margin-top: 50%;
   transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
   transition: 1s all;
   white-space: nowrap;
 }
 .din-p-4-opened__h1 {
   margin-top: 6vw;
   transform: translateY(0%);
+  -webkit-transform: translateY(0%);
 
 }
 .din-p-4__teeth {
@@ -434,6 +441,7 @@ export default {
   width: 1.5vw;
   height: 1.5vw;
   transform: translate(-0.5vw, -1vw);
+  -webkit-transform: translate(-0.5vw, -1vw);
 }
 .din-p-4-click__svg {
   width: 13vw;
@@ -486,7 +494,8 @@ export default {
   left: 15%;
   top: 5%;
   transition: 0.1s all linear;
-  transform: translate(50%, 50%)
+  transform: translate(50%, 50%);
+  -webkit-transform: translate(50%, 50%);
 }
 .din__p {
   margin: 0;
@@ -503,9 +512,11 @@ export default {
   gap: 0.5vw;
   justify-content: space-between;
   transition: 1s all linear;
+  max-width: 40%;
 }
 .din-content-footer__container {
   transform: translate(-43vw, -15vh);
+  -webkit-transform: translate-43vw, -15vh)
 }
 .din-top__header {
   width: 100%;
@@ -518,10 +529,13 @@ export default {
 .pos-abs {
   position: fixed;
 }
+.din-top-1 {
+  top: 1vh;
+}
 .abs-center {
   left: 50%;
-  top: 1vh;
   transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
 }
 .bg-text {
   color: white;
@@ -537,13 +551,16 @@ export default {
   width: 31vw;
   height: 3vw;
   z-index: 3;
-  transition: 1s;
+  
+  
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0.6vw;
   box-sizing: border-box;
-}
+  transition: all 0.8s;
+  -webkit-transition: 0.8s all;
+} 
 
 .din-img-1 {
   filter: invert(1);
@@ -551,6 +568,7 @@ export default {
   height: 100%;
   transition: 0.5s all linear;
   cursor: pointer;
+  object-fit: contain;
 }
 .din-img-float {
   max-height: 1.3vw;
@@ -558,10 +576,13 @@ export default {
 }
 .din-rotated-img {
   transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
 }
 .din-rotated {
-  transform: rotate(90deg) translate(-50%);
+  
   transform-origin: left;
+  transition: 1s all;
+  transform: rotate(90deg) translate(-50%, -50%);
   left: calc(3vw + 4vh);
   top: 50%;
 }
@@ -571,19 +592,23 @@ export default {
   z-index: 1;
   top: 50%;
   transform: translate(-50%, -50%);
+  transform-origin: left;
   border-radius: 50%;
-      margin-left: -10vw;
+  margin-left: -10vw;
 }
 
 .din-block {
   transform: rotate(90deg) translate(-50%);
+  -webkit-transform: rotate(90deg) translate(-50%);
   transform-origin: left;
+  -webkit-transform-origin: left;
   left: calc(100% - 6vw + 1vh);
   top: 50%;
 }
 .din-container {
   top: 50%;
   transform: translate(-50%, -50%) rotate(90deg);
+  -webkit-transform: translate(-50%, -50%) rotate(90deg);
   width: 40vh;
   height: 65vw;
 }
@@ -592,7 +617,9 @@ export default {
 }
 .din-footer {
   transform: rotate(0deg) translate(0%);
+  -webkit-transform: rotate(0deg) translate(0%);
   transform-origin: right;
+  -webkit-transform-origin: right;
   left: 0;
   top: calc(100% - 25vh);
   bottom: 0;
@@ -605,6 +632,7 @@ export default {
 } 
 .din-content-full-footer {
   transform: translate(-43vw, -29vh);
+  -webkit-transform: translate(-43vw, -29vh);
 }
 
 .fade-nav-enter-active {
