@@ -1,3 +1,121 @@
+<script>
+export default {
+  name: 'dinH',
+  data() {
+    return {
+      point: 0,
+      showNavIcons: true,
+      openArm: false,
+      timedNav: null,
+      ShowFullFooter: false,
+      ShowContactText: false,
+      timedContactText: null,
+      flowerAnim: false
+    }
+    
+  },
+  mounted() {
+    var target = []
+    target.push(document.querySelector('#Point-1'))
+    target.push(document.querySelector('#Point-2'))
+    target.push(document.querySelector('#Point-3'))
+    target.push(document.querySelector('#Point-4'))
+    target.push(document.querySelector('#Point-5'))
+    target.push(document.querySelector('#Point-6'))
+
+    document.addEventListener('scroll', () => {
+      this.openArm = false
+      this.ShowFullFooter = false
+      this.ShowContactText = false
+      this.flowerAnim = false
+      if (window.scrollY <= target[0].getBoundingClientRect().top) {
+        this.point = 0
+      }
+      else if (window.scrollY >= target[0].getBoundingClientRect().top) {
+        this.point = 1
+      }
+      if (window.scrollY >= target[1].getBoundingClientRect().top) {
+        this.point = 2
+      }
+      if (window.scrollY >= target[2].getBoundingClientRect().top) {
+        this.point = 3
+      }
+      if (window.scrollY >= target[3].getBoundingClientRect().top) {
+        this.point = 4
+      }
+      if (window.scrollY >= target[4].getBoundingClientRect().top) {
+        this.point = 5
+
+      }
+      if (window.scrollY >= target[5].getBoundingClientRect().top) {
+        this.point = 6
+        this.openArm = true
+      }
+    })
+  },
+  watch: {
+    openArm () {
+      this.$emit('blur-backgound', this.openArm)
+    },
+    ShowContactText () {
+      this.$emit('start-flower-anim', this.ShowContactText)
+    },
+    point() {
+      this.StopTimeout()
+      if(this.point == 6) {
+        this.timedNav = setTimeout(()=>{
+          this.ShowFullFooter = true
+        }, 1100)
+        this.timedContactText = setTimeout(()=>{
+            this.ShowContactText = true
+          }, 1500)
+      }
+      if(this.point != 2 && this.point != 4)
+        this.showNavIconsFun(true)
+      else 
+        this.showNavIconsFun(false)
+    }
+  },
+  beforeUnmount() {
+    document.removeEventListener("scroll", this.onScroll())
+  },
+  methods: {
+    scrollTo(reffer) {
+      if(reffer == 'Point-6') {
+        window.scrollTo(0,9999);
+      } 
+      else
+        document.getElementById(reffer).scrollIntoView({block: "center"});
+    },
+    goTo(url) {
+      window.open(url, '_blank').focus();
+    },
+    openArmFun() {
+      this.openArm = !this.openArm
+    },
+    onScroll() {
+      this.point = 0
+    },
+    showNavIconsFun(show) {
+      if(show) {
+        this.timedNav = setTimeout(()=>{
+          this.showNavIcons = true
+        }, 800)
+      } 
+      else {
+        this.showNavIcons = false
+      }
+      
+    },
+    StopTimeout() {
+      clearTimeout(this.timedNav);
+      clearTimeout(this.timedContactText);
+
+    }
+  }
+}
+</script>
+
 <template>
   <div class="main__container">
     <div class="din-top__header"></div>
@@ -161,123 +279,7 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'dinH',
-  data() {
-    return {
-      point: 0,
-      showNavIcons: true,
-      openArm: false,
-      timedNav: null,
-      ShowFullFooter: false,
-      ShowContactText: false,
-      timedContactText: null,
-      flowerAnim: false
-    }
-    
-  },
-  mounted() {
-    var target = []
-    target.push(document.querySelector('#Point-1'))
-    target.push(document.querySelector('#Point-2'))
-    target.push(document.querySelector('#Point-3'))
-    target.push(document.querySelector('#Point-4'))
-    target.push(document.querySelector('#Point-5'))
-    target.push(document.querySelector('#Point-6'))
 
-    document.addEventListener('scroll', () => {
-      this.openArm = false
-      this.ShowFullFooter = false
-      this.ShowContactText = false
-      this.flowerAnim = false
-      if (window.scrollY <= target[0].getBoundingClientRect().top) {
-        this.point = 0
-      }
-      else if (window.scrollY >= target[0].getBoundingClientRect().top) {
-        this.point = 1
-      }
-      if (window.scrollY >= target[1].getBoundingClientRect().top) {
-        this.point = 2
-      }
-      if (window.scrollY >= target[2].getBoundingClientRect().top) {
-        this.point = 3
-      }
-      if (window.scrollY >= target[3].getBoundingClientRect().top) {
-        this.point = 4
-      }
-      if (window.scrollY >= target[4].getBoundingClientRect().top) {
-        this.point = 5
-
-      }
-      if (window.scrollY >= target[5].getBoundingClientRect().top) {
-        this.point = 6
-        this.openArm = true
-      }
-    })
-  },
-  watch: {
-    openArm () {
-      this.$emit('blur-backgound', this.openArm)
-    },
-    ShowContactText () {
-      this.$emit('start-flower-anim', this.ShowContactText)
-    },
-    point() {
-      this.StopTimeout()
-      if(this.point == 6) {
-        this.timedNav = setTimeout(()=>{
-          this.ShowFullFooter = true
-        }, 1100)
-        this.timedContactText = setTimeout(()=>{
-            this.ShowContactText = true
-          }, 1500)
-      }
-      if(this.point != 2 && this.point != 4)
-        this.showNavIconsFun(true)
-      else 
-        this.showNavIconsFun(false)
-    }
-  },
-  beforeUnmount() {
-    document.removeEventListener("scroll", this.onScroll())
-  },
-  methods: {
-    scrollTo(reffer) {
-      if(reffer == 'Point-6') {
-        window.scrollTo(0,9999);
-      } 
-      else
-        document.getElementById(reffer).scrollIntoView({block: "center"});
-    },
-    goTo(url) {
-      window.open(url, '_blank').focus();
-    },
-    openArmFun() {
-      this.openArm = !this.openArm
-    },
-    onScroll() {
-      this.point = 0
-    },
-    showNavIconsFun(show) {
-      if(show) {
-        this.timedNav = setTimeout(()=>{
-          this.showNavIcons = true
-        }, 800)
-      } 
-      else {
-        this.showNavIcons = false
-      }
-      
-    },
-    StopTimeout() {
-      clearTimeout(this.timedNav);
-      clearTimeout(this.timedContactText);
-
-    }
-  }
-}
-</script>
 
 
 <style scoped>

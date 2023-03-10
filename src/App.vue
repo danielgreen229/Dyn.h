@@ -1,77 +1,3 @@
-<template>
-<div>
-  <HorizontDecly/>
-  <dinH @blur-backgound="blurBgFun" @start-flower-anim="startAnim">
-  </dinH>
-
-  <div id="bg-1">
-    <div class="bg-1-img__container">
-      <img v-if="!animFlower" v-look-at="50" class="bg-1__img" src="@/assets/imgs/bgforms/1.png"/>  
-      <img v-if="!animFlower" v-look-at="15" class="bg-1__img" src="@/assets/imgs/bgforms/2.png"/>
-      <img v-if="!animFlower" v-look-at="40" class="bg-1__img" src="@/assets/imgs/bgforms/3.png"/>
-      <div v-if="!animFlower" class="bg-1-title__container" id="Point-1">
-        <h1 class="bg-1__title">Dyn.<span class="title-span">H</span></h1>
-      </div>
-      <div v-if="!animFlower" class="bg-1__text">
-          <p class="bg-1__p">  
-            Dynamic
-          </p>
-          <transition name="fade">
-            <span v-look-at="200" class="dyn__span" v-show="target != ''">{{ target }}</span>
-          </transition>
-      </div>
-    </div>     
-    <slider v-if="!animFlower" :refto="'Point-2'"/>
-
-    <div class="block-2__container" >
-      <div class="block-2-text__container"  >
-        <h1 class="block-2__h1"  v-scroll>Any form</h1>
-        <p class="block-2__p"  v-scroll>This navigation can all<br>what you want</p>
-
-      </div>
-      <slider class="slider-point-3" :refto="'Point-3'"/>
-      <div id="Point-2"></div>
-      <img class="bg-1-s-1__img" src="@/assets/imgs/bgforms/6.png">
-
-    </div>
-
-    <div class="block-3__container" id="Point-3">
-      <div class="block-3-text__container">
-        
-      </div>
-      <img 
-        :class="{'blur-bg': blurBg}"
-        v-look-at="15" 
-        class="block-3-s-1__img" 
-        src="@/assets/imgs/bgforms/4.png"
-        />
-      <img 
-        :class="{'blur-bg': blurBg}"
-        v-look-at="40" 
-        class="block-3-s-2__img" 
-        src="@/assets/imgs/bgforms/8.png"
-      />
-      <div id="Point-4"></div>
-
-      <transition name="fade">
-      <div  v-show="animFlower">
-        <animFlowers/>
-        
-      </div>
-    </transition>
-    </div>    
-  </div>
-  <div id="bg-2">
-      <div class="block-4__container">
-        <div id="Point-5"></div>
-      </div>
-      <div class="block-5__container">
-        <div id="Point-6"></div>
-      </div>
-    </div>
-</div>
-</template>
-
 <script>
 import dinH from './components/dinH.vue'
 import animFlowers from './components/animFlowers.vue'
@@ -118,6 +44,75 @@ export default {
   }
 }
 </script>
+
+
+<template>
+<div>
+  <HorizontDecly/>
+  <dinH @blur-backgound="blurBgFun" @start-flower-anim="startAnim">
+  </dinH>
+  <div id="bg-1">
+    <div class="bg-1-img__container">
+      <img v-if="!animFlower" v-look-at="50" class="bg-1__img" src="@/assets/imgs/bgforms/1.png"/>  
+      <img v-if="!animFlower" v-look-at="15" class="bg-1__img" src="@/assets/imgs/bgforms/2.png"/>
+      <img v-if="!animFlower" v-look-at="40" class="bg-1__img" src="@/assets/imgs/bgforms/3.png"/>
+      <div v-if="!animFlower" class="bg-1-title__container" id="Point-1">
+        <h1 class="bg-1__title">Dyn.<span class="title-span">H</span></h1>
+      </div>
+      <div v-if="!animFlower" class="bg-1__text">
+          <p class="bg-1__p">  
+            Dynamic
+          </p>
+          <transition name="fade">
+            <span v-look-at="200" class="dyn__span" v-show="target != ''">{{ target }}</span>
+          </transition>
+      </div>
+    </div>     
+    <slider v-if="!animFlower" :refto="'Point-2'"/>
+
+    <div class="block-2__container" >
+      <div class="block-2-text__container"  >
+        <h1 class="block-2__h1"  v-scroll>Any form</h1>
+        <p class="block-2__p"  v-scroll>This navigation can all<br>what you want</p>
+      </div>
+      <slider class="slider-point-3" :refto="'Point-3'"/>
+      <div id="Point-2"></div>
+      <img class="bg-1-s-1__img" src="@/assets/imgs/bgforms/6.png">
+    </div>
+    <div class="block-3__container" id="Point-3">
+      <div class="block-3-text__container">
+      </div>
+      <img 
+        :class="{'blur-bg': blurBg}"
+        v-look-at="15" 
+        class="block-3-s-1__img" 
+        src="@/assets/imgs/bgforms/4.png"
+        />
+      <img 
+        :class="{'blur-bg': blurBg}"
+        v-look-at="40" 
+        class="block-3-s-2__img" 
+        src="@/assets/imgs/bgforms/8.png"
+      />
+      <div id="Point-4"></div>
+      <transition name="fade">
+      <div  v-show="animFlower">
+        <animFlowers/>
+      </div>
+    </transition>
+    </div>    
+  </div>
+  <div id="bg-2">
+      <div class="block-4__container">
+        <div id="Point-5"></div>
+      </div>
+      <div class="block-5__container">
+        <div id="Point-6"></div>
+      </div>
+    </div>
+</div>
+</template>
+
 
 <style>
 .bg-2__img {
