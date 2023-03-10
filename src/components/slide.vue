@@ -6,8 +6,6 @@ export default {
 	],
 	methods: {
 		slideTo() {
-			
-			// document.getElementById('Point-2').scrollIntoView();
 			document.getElementById(this.refto).scrollIntoView({block: "center"});
 
 		}

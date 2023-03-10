@@ -16,7 +16,6 @@ export default {
 	},
 	methods: {  
 		onResize() {
-			console.log( this.show)
 			window.innerHeight >  window.innerWidth ? this.show = true : this.show = false
 
 		}
