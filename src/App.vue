@@ -242,6 +242,7 @@ export default {
   position: relative;
 }
 html {
+  cursor: default;
   scroll-behavior: smooth;
   background-color: black;
 }
