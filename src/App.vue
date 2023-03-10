@@ -56,12 +56,7 @@
       <transition name="fade">
       <div  v-show="animFlower">
         <animFlowers/>
-        <!-- <img 
-          :class="{'blur-bg': blurBg}" 
-          v-look-at="30" 
-          class="bg-2__img" 
-          src="@/assets/imgs/bgforms/2.png"
-        /> -->
+        
       </div>
     </transition>
     </div>    
