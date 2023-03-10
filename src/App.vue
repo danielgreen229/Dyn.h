@@ -6,13 +6,13 @@
 
   <div id="bg-1">
     <div class="bg-1-img__container">
-      <img v-look-at="50" class="bg-1__img" src="@/assets/imgs/bgforms/1.png"/>  
-      <img v-look-at="15" class="bg-1__img" src="@/assets/imgs/bgforms/2.png"/>
-      <img v-look-at="40" class="bg-1__img" src="@/assets/imgs/bgforms/3.png"/>
-      <div class="bg-1-title__container" id="Point-1">
+      <img v-if="!animFlower" v-look-at="50" class="bg-1__img" src="@/assets/imgs/bgforms/1.png"/>  
+      <img v-if="!animFlower" v-look-at="15" class="bg-1__img" src="@/assets/imgs/bgforms/2.png"/>
+      <img v-if="!animFlower" v-look-at="40" class="bg-1__img" src="@/assets/imgs/bgforms/3.png"/>
+      <div v-if="!animFlower" class="bg-1-title__container" id="Point-1">
         <h1 class="bg-1__title">Dyn.<span class="title-span">H</span></h1>
       </div>
-      <div class="bg-1__text">
+      <div v-if="!animFlower" class="bg-1__text">
           <p class="bg-1__p">  
             Dynamic
           </p>
@@ -21,9 +21,9 @@
           </transition>
       </div>
     </div>     
-    <slider :refto="'Point-2'"/>
+    <slider v-if="!animFlower" :refto="'Point-2'"/>
 
-    <div class="block-2__container">
+    <div class="block-2__container" >
       <div class="block-2-text__container"  >
         <h1 class="block-2__h1"  v-scroll>Any form</h1>
         <p class="block-2__p"  v-scroll>This navigation can all<br>what you want</p>

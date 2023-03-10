@@ -25,7 +25,7 @@
               'din-content-full-footer': ShowFullFooter
             }"
           >
-            <p class="din__p">Dyn.<span class="title-span">H</span> </p>
+            <p @click="scrollTo('Point-1')" class="din__p">Dyn.<span class="title-span">H</span> </p>
             <div 
               class="din-img__container" 
               v-z-look-at="20" 
